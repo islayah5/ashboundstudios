@@ -1,753 +1,752 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashbound Studios - Website</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" href="assets/Ashy_No-BG.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashbound Studios - Website</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="assets/Ashy_No-BG.png">
 
-    <style>
-        /* CSS Variables for a consistent color palette */
-        :root {
-            --bg-dark: #0a080f;
-            --panel-bg: rgba(22, 18, 29, 0.8);
-            --panel-bg-light: rgba(30, 25, 35, 0.7);
-            --text-light: #f0e8f8;
-            --text-muted: #a0aec0;
-            --accent-gold: #f1c40f;
-            --accent-orange: #e67e22;
-            --accent-red: #c0392b;
-            --accent-blue: #3498db;
-            --accent-purple: #9b59b6;
-            --border-color: rgba(241, 196, 15, 0.2);
-            --panel-border: rgba(160, 174, 192, 0.2);
+    <style>
+        /* CSS Variables for a consistent color palette */
+        :root {
+            --bg-dark: #0a080f;
+            --panel-bg: rgba(22, 18, 29, 0.8);
+            --panel-bg-light: rgba(30, 25, 35, 0.7);
+            --text-light: #f0e8f8;
+            --text-muted: #a0aec0;
+            --accent-gold: #f1c40f;
+            --accent-orange: #e67e22;
+            --accent-red: #c0392b;
+            --accent-blue: #3498db;
+            --accent-purple: #9b59b6;
+            --border-color: rgba(241, 196, 15, 0.2);
+            --panel-border: rgba(160, 174, 192, 0.2);
 
-            --font-family-heading: 'Cinzel', serif;
-            --font-family-body: 'Roboto', sans-serif;
-        }
+            --font-family-heading: 'Cinzel', serif;
+            --font-family-body: 'Roboto', sans-serif;
+        }
 
-        /* --- 1. BASE & RESET --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* --- 1. BASE & RESET --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 2rem;
-        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+        }
 
-        body {
-            font-family: var(--font-family-body);
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        body {
+            font-family: var(--font-family-body);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        /* --- 2. LAYOUT & HELPERS --- */
-        .component-section {
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--panel-border);
-        }
-        .component-section:last-child { border-bottom: none; }
-        .component-header { margin-bottom: 2rem; }
-        .component-grid { display: grid; gap: 1.5rem; }
+        /* --- 2. LAYOUT & HELPERS --- */
+        .component-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--panel-border);
+        }
+        .component-section:last-child { border-bottom: none; }
+        .component-header { margin-bottom: 2rem; }
+        .component-grid { display: grid; gap: 1.5rem; }
 
-        /* --- 3. TYPOGRAPHY --- */
-        h1, h2, h3, h4 {
-            font-family: var(--font-family-heading);
-            color: var(--text-light);
-            font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 0 0 8px rgba(22,18,29,0.8);
-        }
-        h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: 1px; }
-        h2 { font-size: 2.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--panel-border); padding-bottom: 0.5rem; }
-        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        h4 { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
-        p, li { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
-        p.muted { color: var(--text-muted); }
-        a { color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { color: var(--text-light); text-decoration: underline; }
-        /* Enhanced paragraph style for the specific text */
-        .enhanced-text {
-            color: var(--accent-gold);
-            text-shadow: 0 0 5px var(--accent-orange), 0 0 10px var(--accent-red);
-            font-weight: 500;
-        }
+        /* --- 3. TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-family-heading);
+            color: var(--text-light);
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 0 8px rgba(22,18,29,0.8);
+        }
+        h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: 1px; }
+        h2 { font-size: 2.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--panel-border); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        h4 { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
+        p, li { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
+        p.muted { color: var(--text-muted); }
+        a { color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: var(--text-light); text-decoration: underline; }
+        /* Enhanced paragraph style for the specific text */
+        .enhanced-text {
+            color: var(--accent-gold);
+            text-shadow: 0 0 5px var(--accent-orange), 0 0 10px var(--accent-red);
+            font-weight: 500;
+        }
 
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
 
-        /* Hero section background effects */
-        .hero-bg {
-            filter: brightness(0.5) saturate(1.2);
-            transform: scale(1.05);
-        }
-        
-        /* Unique flame-like text effect for the main title */
-        .flame-title {
-            font-weight: 700;
-            color: transparent;
-            background: linear-gradient(to top, var(--accent-red) 10%, var(--accent-orange) 50%, var(--accent-gold) 80%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            background-size: 100% 250%;
-            background-position: 0% 100%;
-            text-shadow: 0 0 10px rgba(230, 126, 34, 0.5), 0 0 20px rgba(192, 57, 43, 0.5);
-            filter: url(#flame-filter);
-            animation: flame-lick 6s infinite linear;
-        }
+        /* Hero section background effects */
+        .hero-bg {
+            filter: brightness(0.5) saturate(1.2);
+            transform: scale(1.05);
+        }
+        
+        /* Unique flame-like text effect for the main title */
+        .flame-title {
+            font-weight: 700;
+            color: transparent;
+            background: linear-gradient(to top, var(--accent-red) 10%, var(--accent-orange) 50%, var(--accent-gold) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 100% 250%;
+            background-position: 0% 100%;
+            text-shadow: 0 0 10px rgba(230, 126, 34, 0.5), 0 0 20px rgba(192, 57, 43, 0.5);
+            filter: url(#flame-filter);
+            animation: flame-lick 6s infinite linear;
+        }
 
-        /* Keyframes for the flame text animation */
-        @keyframes flame-lick {
-            0% { background-position: 0% 100%; }
-            50% { background-position: 0% 0%; }
-            100% { background-position: 0% 100%; }
-        }
+        /* Keyframes for the flame text animation */
+        @keyframes flame-lick {
+            0% { background-position: 0% 100%; }
+            50% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
 
-        /* New styles for the fiery image animation */
-        .fiery-image-container {
-            position: relative;
-            width: 250px; /* Adjust size as needed */
-            height: 250px; /* Adjust size as needed */
-        }
+        /* New styles for the fiery image animation */
+        .fiery-image-container {
+            position: relative;
+            width: 250px; /* Adjust size as needed */
+            height: 250px; /* Adjust size as needed */
+        }
 
-        .fiery-image {
-            animation: scalePulse 2s infinite ease-in-out;
-            filter: drop-shadow(0 0 15px var(--accent-orange)) drop-shadow(0 0 30px var(--accent-red));
-        }
+        .fiery-image {
+            animation: scalePulse 2s infinite ease-in-out;
+            filter: drop-shadow(0 0 15px var(--accent-orange)) drop-shadow(0 0 30px var(--accent-red));
+        }
 
-        @keyframes scalePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        @keyframes scalePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-        /* Section divider styling with gradient overlays for a seamless look */
-        .section-divider {
-            position: relative;
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-            overflow: hidden;
-        }
-        .section-divider::before, .section-divider::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            z-index: 10;
-        }
-        .section-divider::before {
-            top: 0;
-            background: linear-gradient(to bottom, var(--bg-dark), transparent);
-        }
-        .section-divider::after {
-            bottom: 0;
-            background: linear-gradient(to top, var(--bg-dark), transparent);
-        }
-        
-        /* Navigation link styling with an active/hover underline effect */
-        .nav-item {
-            position: relative;
-            color: var(--text-muted);
-            transition: color 0.3s;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-        }
-        .nav-item:hover {
-            color: var(--accent-gold);
-        }
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--accent-gold);
-            transition: width 0.3s;
-        }
-        .nav-item.active::after, .nav-item:hover::after {
-            width: 100%;
-        }
+        /* Section divider styling with gradient overlays for a seamless look */
+        .section-divider {
+            position: relative;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+            overflow: hidden;
+        }
+        .section-divider::before, .section-divider::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: 10;
+        }
+        .section-divider::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--bg-dark), transparent);
+        }
+        .section-divider::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+        }
+        
+        /* Navigation link styling with an active/hover underline effect */
+        .nav-item {
+            position: relative;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+        .nav-item:hover {
+            color: var(--accent-gold);
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-gold);
+            transition: width 0.3s;
+        }
+        .nav-item.active::after, .nav-item:hover::after {
+            width: 100%;
+        }
 
-        /* Embers particle effect styling */
-        .ember-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-        }
-        .ember {
-            position: absolute;
-            background-color: var(--accent-orange);
-            border-radius: 50%;
-            opacity: 0;
-            animation: rise 10s infinite ease-in;
-            box-shadow: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange);
-        }
-        /* Keyframes for the embers to rise and fade out */
-        @keyframes rise {
-            0% { transform: translateY(100vh) scale(1); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(0); opacity: 0; }
-        }
+        /* Embers particle effect styling */
+        .ember-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+        .ember {
+            position: absolute;
+            background-color: var(--accent-orange);
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise 10s infinite ease-in;
+            box-shadow: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange);
+        }
+        /* Keyframes for the embers to rise and fade out */
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0); opacity: 0; }
+        }
 
-        /* Animation for sections fading in on scroll */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Interactive icon styles for the innovations section */
-        .icon-container .icon-default { transition: opacity 0.3s ease, transform 0.3s ease; }
-        .icon-container .icon-hover { opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; top:0; left:0; right:0; bottom:0; margin:auto; transform: scale(0.95); }
-        .card:hover .icon-container .icon-default { opacity: 0; transform: scale(1.05); }
-        .card:hover .icon-container .icon-hover { opacity: 1; transform: scale(1); }
+        /* Animation for sections fading in on scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Interactive icon styles for the innovations section */
+        .icon-container .icon-default { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .icon-container .icon-hover { opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; top:0; left:0; right:0; bottom:0; margin:auto; transform: scale(0.95); }
+        .card:hover .icon-container .icon-default { opacity: 0; transform: scale(1.05); }
+        .card:hover .icon-container .icon-hover { opacity: 1; transform: scale(1); }
 
-        /* Card styles from asset library */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; }
-        .card {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
-        .card-header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); }
-        .card-header .ash-icon { --icon-size: 24px; }
-        .card-header .ash-icon, .card-header .ash-icon:hover { transform: none; filter: none; } /* Override hover for static card icons */
-        .card-header .ash-icon .primary-stroke { stroke: var(--accent-gold); }
-        .card-header h3 { margin: 0; font-size: 1.25rem; }
-        .card-body { padding: 1.5rem; flex-grow: 1; }
-        .card-body p { margin-bottom: 0; color: var(--text-muted); }
-        .card-footer { padding: 0 1.5rem 1.5rem; margin-top: auto; }
-        .card-footer .btn { width: 100%; }
+        /* Card styles from asset library */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; }
+        .card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
+        .card-header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); }
+        .card-header .ash-icon { --icon-size: 24px; }
+        .card-header .ash-icon, .card-header .ash-icon:hover { transform: none; filter: none; } /* Override hover for static card icons */
+        .card-header .ash-icon .primary-stroke { stroke: var(--accent-gold); }
+        .card-header h3 { margin: 0; font-size: 1.25rem; }
+        .card-body { padding: 1.5rem; flex-grow: 1; }
+        .card-body p { margin-bottom: 0; color: var(--text-muted); }
+        .card-footer { padding: 0 1.5rem 1.5rem; margin-top: auto; }
+        .card-footer .btn { width: 100%; }
 
-        /* Button styles from asset library */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-family: var(--font-family-heading);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .btn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
-        .btn::before { /* Shimmer effect */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: left 0.7s ease;
-        }
-        .btn:hover::before { left: 125%; }
-        
-        .btn-primary { background: linear-gradient(45deg, var(--accent-orange), var(--accent-red)); color: var(--text-light); border-color: var(--accent-gold); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); }
-        .btn-secondary { background-color: var(--panel-bg); color: var(--text-light); border-color: var(--panel-border); }
-        .btn-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: var(--text-light); }
-        .btn-ghost { background-color: transparent; color: var(--text-muted); border-color: transparent; }
-        .btn-ghost:hover { color: var(--text-light); background-color: rgba(255,255,255,0.05); }
+        /* Button styles from asset library */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+        .btn::before { /* Shimmer effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: left 0.7s ease;
+        }
+        .btn:hover::before { left: 125%; }
+        
+        .btn-primary { background: linear-gradient(45deg, var(--accent-orange), var(--accent-red)); color: var(--text-light); border-color: var(--accent-gold); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); }
+        .btn-secondary { background-color: var(--panel-bg); color: var(--text-light); border-color: var(--panel-border); }
+        .btn-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: var(--text-light); }
+        .btn-ghost { background-color: transparent; color: var(--text-muted); border-color: transparent; }
+        .btn-ghost:hover { color: var(--text-light); background-color: rgba(255,255,255,0.05); }
 
-        .btn-sm { font-size: 0.75rem; padding: 0.5rem 1rem; }
-        .btn-md { font-size: 0.9rem; padding: 0.75rem 1.5rem; }
-        .btn-lg { font-size: 1.1rem; padding: 1rem 2rem; }
+        .btn-sm { font-size: 0.75rem; padding: 0.5rem 1rem; }
+        .btn-md { font-size: 0.9rem; padding: 0.75rem 1.5rem; }
+        .btn-lg { font-size: 1.1rem; padding: 1rem 2rem; }
 
-        /* Dividers - Rift of Embers */
-        .divider { width: 100%; text-align: center; }
-        .divider-ember-crack {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .divider-ember-crack .crack-path {
-            stroke: var(--accent-red);
-            stroke-width: 1;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw-crack 3s ease-out forwards;
-        }
-        .divider-ember-crack .flame {
-            opacity: 0;
-            transform-origin: bottom center;
-            animation: flicker-flame 2s infinite ease-in-out;
-        }
-        .divider-ember-crack .flame.f1 { animation-delay: 0.2s; animation-duration: 2.5s; }
-        .divider-ember-crack .flame.f2 { animation-delay: 0.5s; animation-duration: 1.8s; }
-        .divider-ember-crack .flame.f3 { animation-delay: 0.1s; animation-duration: 2.2s; }
-        .divider-ember-crack .flame.f4 { animation-delay: 0.8s; animation-duration: 2s; }
-        .divider-ember-crack .flame.f5 { animation-delay: 1.2s; animation-duration: 1.9s; }
-        
-        @keyframes draw-crack {
-            to { stroke-dashoffset: 0; }
-        }
-        @keyframes flicker-flame {
-            0%, 100% { transform: scaleY(0.8) skewX(-2deg); opacity: 0.7; }
-            50% { transform: scaleY(1.0) skewX(2deg); opacity: 1; }
-            75% { transform: scaleY(0.9); opacity: 0.9; }
-        }
+        /* Dividers - Rift of Embers */
+        .divider { width: 100%; text-align: center; }
+        .divider-ember-crack {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .divider-ember-crack .crack-path {
+            stroke: var(--accent-red);
+            stroke-width: 1;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-crack 3s ease-out forwards;
+        }
+        .divider-ember-crack .flame {
+            opacity: 0;
+            transform-origin: bottom center;
+            animation: flicker-flame 2s infinite ease-in-out;
+        }
+        .divider-ember-crack .flame.f1 { animation-delay: 0.2s; animation-duration: 2.5s; }
+        .divider-ember-crack .flame.f2 { animation-delay: 0.5s; animation-duration: 1.8s; }
+        .divider-ember-crack .flame.f3 { animation-delay: 0.1s; animation-duration: 2.2s; }
+        .divider-ember-crack .flame.f4 { animation-delay: 0.8s; animation-duration: 2s; }
+        .divider-ember-crack .flame.f5 { animation-delay: 1.2s; animation-duration: 1.9s; }
+        
+        @keyframes draw-crack {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes flicker-flame {
+            0%, 100% { transform: scaleY(0.8) skewX(-2deg); opacity: 0.7; }
+            50% { transform: scaleY(1.0) skewX(2deg); opacity: 1; }
+            75% { transform: scaleY(0.9); opacity: 0.9; }
+        }
 
-        .divider-gem {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background: var(--accent-red);
-            transform: rotate(45deg);
-            box-shadow: 0 0 5px var(--accent-red), 0 0 10px var(--accent-orange);
-            animation: pulse-gem 2.5s infinite ease-in-out;
-        }
-        @keyframes pulse-gem {
-            0%, 100% { transform: rotate(45deg) scale(0.8); box-shadow: 0 0 3px var(--accent-red), 0 0 6px var(--accent-orange); }
-            50% { transform: rotate(45deg) scale(1); box-shadow: 0 0 8px var(--accent-red), 0 0 15px var(--accent-orange); }
-        }
-        
-    </style>
+        .divider-gem {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-red);
+            transform: rotate(45deg);
+            box-shadow: 0 0 5px var(--accent-red), 0 0 10px var(--accent-orange);
+            animation: pulse-gem 2.5s infinite ease-in-out;
+        }
+        @keyframes pulse-gem {
+            0%, 100% { transform: rotate(45deg) scale(0.8); box-shadow: 0 0 3px var(--accent-red), 0 0 6px var(--accent-orange); }
+            50% { transform: rotate(45deg) scale(1); box-shadow: 0 0 8px var(--accent-red), 0 0 15px var(--accent-orange); }
+        }
+        
+    </style>
 </head>
 <body class="antialiased">
 
-    <svg style="position: absolute; width: 0; height: 0;">
-        <defs>
-            <filter id="flame-filter">
-                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.1 0.4" numOctaves="3" seed="0">
-                    <animate attributeName="baseFrequency" values="0.1 0.4; .06 5; 1 0.4" dur="55s" repeatCount="indefinite" />
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="3" />
-            </filter>
-            <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" style="stop-color:var(--accent-red);stop-opacity:1" />
-                <stop offset="60%" style="stop-color:var(--accent-orange);stop-opacity:1" />
-                <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:1" />
-            </linearGradient>
-        </defs>
-    </svg>
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="flame-filter">
+                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.1 0.4" numOctaves="3" seed="0">
+                    <animate attributeName="baseFrequency" values="0.1 0.4; .06 5; 1 0.4" dur="55s" repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="3" />
+            </filter>
+            <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color:var(--accent-red);stop-opacity:1" />
+                <stop offset="60%" style="stop-color:var(--accent-orange);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
 
-    <div class="ember-container" id="ember-container"></div>
+    <div class="ember-container" id="ember-container"></div>
 
-    <nav id="navbar" class="sticky top-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10 shadow-lg transition-all duration-300 transform scale-100 md:scale-100 hover:scale-105">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-center py-4">
-                <a href="#home" class="flex items-center space-x-2">
-                    <img src="assets/Ashbound-logo.png" alt="Ashbound Studios Logo Text" class="h-10">
-                </a>
-                <div class="hidden md:flex items-center space-x-8" id="nav-links">
-                    <a href="#problem" class="nav-item">The Problem</a>
-                    <a href="#solution" class="nav-item">Our Solution</a>
-                    <a href="#innovations" class="nav-item">The Engine</a>
-                    <a href="#ask" class="nav-item">The Ask</a>
-                    <a href="#team" class="nav-item">The Team</a>
-                </div>
-                <a href="#ask" class="md:hidden inline-block btn btn-primary btn-md">
-                    The Ask
-                </a>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbar" class="sticky top-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10 shadow-lg transition-all duration-300 transform scale-100 md:scale-100 hover:scale-105">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <a href="#home" class="flex items-center space-x-2">
+                    <img src="assets/Ashbound_Filled_Black (1) (1).jpg" alt="Ashbound Studios Logo Text" class="h-10">
+                </a>
+                <div class="hidden md:flex items-center space-x-8" id="nav-links">
+                    <a href="#problem" class="nav-item">The Problem</a>
+                    <a href="#solution" class="nav-item">Our Solution</a>
+                    <a href="#innovations" class="nav-item">The Engine</a>
+                    <a href="#ask" class="nav-item">The Ask</a>
+                    <a href="#team" class="nav-item">The Team</a>
+                </div>
+                <a href="#ask" class="md:hidden inline-block btn btn-primary btn-md">
+                    The Ask
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <header id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-        <div class="absolute inset-0 hero-bg bg-center bg-cover" style="background-image: url('assets/Ashbound-logo.png');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-dark)] via-transparent to-transparent"></div>
-        <div class="relative z-10 p-8">
-            <img src="assets/Ashy_No-BG.png" alt="ahyboy" class="mx-auto mb-8 h-24 md:h-32">
-            <h1 class="flame-title text-5xl md:text-7xl lg:text-8xl uppercase">
-                The Ashbound
-            </h1>
-            <p class="text-2xl md:text-3xl text-[var(--accent-gold)] font-light mt-4 mb-8">The Gods Fall. A World is Reborn.</p>
-            <a href="#problem" class="inline-block btn btn-primary btn-lg">
-                Discover the Legacy
-            </a>
-        </div>
-    </header>
+    <header id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <div class="absolute inset-0 hero-bg bg-center bg-cover" style="background-image: url('assets/Ashbound_Filled_Black (1) (1).jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-dark)] via-transparent to-transparent"></div>
+        <div class="relative z-10 p-8">
+            <img src="assets/Ashy_No-BG.png" alt="ahyboy" class="mx-auto mb-8 h-24 md:h-32">
+            <h1 class="flame-title text-5xl md:text-7xl lg:text-8xl uppercase">
+                The Ashbound
+            </h1>
+            <p class="text-2xl md:text-3xl text-[var(--accent-gold)] font-light mt-4 mb-8">The Gods Fall. A World is Reborn.</p>
+            <a href="#problem" class="inline-block btn btn-primary btn-lg">
+                Discover the Legacy
+            </a>
+        </div>
+    </header>
 
-    <main>
-        <section id="problem" class="py-20 md:py-28 bg-black/20 fade-in-section">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">An Industry in Need of Passion</h2>
-                <p class="text-xl text-center text-[var(--text-muted)] mb-12 max-w-4xl mx-auto">The modern gaming market suffers from "AAA fatigue." Players are worn down by unfinished releases, aggressive monetization, and a palpable lack of the creative soul that defined gaming's greatest legends.</p>
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div>
-                            <h3 class="text-2xl font-bold mb-3 text-[var(--accent-red)]">The Erosion of Ownership</h3>
-                            <p class="text-[var(--text-muted)] leading-relaxed">The rise of aggressive DRM and server-dependent games that can be shut down at any time has ignited a "hot button" issue around digital ownership. Players feel they are renting games, not buying them. This creates a powerful opportunity for studios who champion player rights."</p>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold mb-3 text-[var(--accent-blue)]">The Indie Renaissance</h3>
-                            <p class="text-[var(--text-muted)] leading-relaxed">As titans falter, indie studios have become a "shining beacon." There is a tactical RPG renaissance, with players actively seeking premium, story-driven titles that respect their intelligence and investment. This is our moment.</p>
-                        </div>
-                    </div>
-                    <div class="card p-8 rounded-xl text-center">
-                        <h3 class="text-xl font-bold mb-4 text-white">Market Opportunity</h3>
-                        <div class="space-y-4 text-left">
-                            <div>
-                                <p class="font-bold text-[var(--accent-gold)]">Total Addressable Market (TAM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="18">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
-                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Global Strategy, 2024)</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-[var(--accent-orange)]">Serviceable Addressable Market (SAM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="17.7">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
-                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Online Strategy, 2023)</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-[var(--accent-blue)]">Serviceable Obtainable Market (SOM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="2.96">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
-                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Premium Indie RPG, 2025)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main>
+        <section id="problem" class="py-20 md:py-28 bg-black/20 fade-in-section">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">An Industry in Need of Passion</h2>
+                <p class="text-xl text-center text-[var(--text-muted)] mb-12 max-w-4xl mx-auto">The modern gaming market suffers from "AAA fatigue." Players are worn down by unfinished releases, aggressive monetization, and a palpable lack of the creative soul that defined gaming's greatest legends.</p>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-[var(--accent-red)]">The Erosion of Ownership</h3>
+                            <p class="text-[var(--text-muted)] leading-relaxed">The rise of aggressive DRM and server-dependent games that can be shut down at any time has ignited a "hot button" issue around digital ownership. Players feel they are renting games, not buying them. This creates a powerful opportunity for studios who champion player rights."</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3 text-[var(--accent-blue)]">The Indie Renaissance</h3>
+                            <p class="text-[var(--text-muted)] leading-relaxed">As titans falter, indie studios have become a "shining beacon." There is a tactical RPG renaissance, with players actively seeking premium, story-driven titles that respect their intelligence and investment. This is our moment.</p>
+                        </div>
+                    </div>
+                    <div class="card p-8 rounded-xl text-center">
+                        <h3 class="text-xl font-bold mb-4 text-white">Market Opportunity</h3>
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <p class="font-bold text-[var(--accent-gold)]">Total Addressable Market (TAM)</p>
+                                <div class="flex items-baseline">
+                                    <span class="text-3xl font-black" data-animate-number="18">0</span>
+                                    <span class="text-3xl font-black">B</span>
+                                </div>
+                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Global Strategy, 2024)</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[var(--accent-orange)]">Serviceable Addressable Market (SAM)</p>
+                                <div class="flex items-baseline">
+                                    <span class="text-3xl font-black" data-animate-number="17.7">0</span>
+                                    <span class="text-3xl font-black">B</span>
+                                </div>
+                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Online Strategy, 2023)</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-[var(--accent-blue)]">Serviceable Obtainable Market (SOM)</p>
+                                <div class="flex items-baseline">
+                                    <span class="text-3xl font-black" data-animate-number="2.96">0</span>
+                                    <span class="text-3xl font-black">B</span>
+                                </div>
+                                <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Premium Indie RPG, 2025)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="divider pt-12">
-            <div class="divider-gem"></div>
-        </div>
+        <div class="divider pt-12">
+            <div class="divider-gem"></div>
+        </div>
 
-        <section id="solution" class="py-20 md:py-28 bg-[var(--bg-dark)] fade-in-section">
-            <div class="container mx-auto px-6 max-w-6xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">Passionate Development by Gamers, for Gamers</h2>
-                <p class="text-2xl text-[var(--accent-gold)] leading-relaxed max-w-4xl mx-auto">"We start this journey not for money or notoriety, but for passion. We are gamers. A term that in years past was derogatory, but in modern times, it is the highest form of compliment."</p>
-                <div class="mt-16 grid md:grid-cols-2 gap-10 text-left">
-                    <div class="border-l-4 border-[var(--accent-gold)] pl-6">
-                        <h3 class="text-3xl font-bold text-white mb-3">Our Vision</h3>
-                        <p class="text-xl text-[var(--text-muted)] leading-relaxed font-light">To reshape the turn-based RPG landscape by crafting deeply narrative, strategic experiences that leave a lasting emotional impact.</p>
-                    </div>
-                    <div class="border-l-4 border-[var(--accent-blue)] pl-6">
-                        <h3 class="text-3xl font-bold text-white mb-3">Our Mission</h3>
-                        <p class="text-xl text-[var(--text-muted)] leading-relaxed font-light">To create richly atmospheric, story-driven strategy games for discerning players, championing premium storytelling and tactical innovation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="solution" class="py-20 md:py-28 bg-[var(--bg-dark)] fade-in-section">
+            <div class="container mx-auto px-6 max-w-6xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">Passionate Development by Gamers, for Gamers</h2>
+                <p class="text-2xl text-[var(--accent-gold)] leading-relaxed max-w-4xl mx-auto">"We start this journey not for money or notoriety, but for passion. We are gamers. A term that in years past was derogatory, but in modern times, it is the highest form of compliment."</p>
+                <div class="mt-16 grid md:grid-cols-2 gap-10 text-left">
+                    <div class="border-l-4 border-[var(--accent-gold)] pl-6">
+                        <h3 class="text-3xl font-bold text-white mb-3">Our Vision</h3>
+                        <p class="text-xl text-[var(--text-muted)] leading-relaxed font-light">To reshape the turn-based RPG landscape by crafting deeply narrative, strategic experiences that leave a lasting emotional impact.</p>
+                    </div>
+                    <div class="border-l-4 border-[var(--accent-blue)] pl-6">
+                        <h3 class="text-3xl font-bold text-white mb-3">Our Mission</h3>
+                        <p class="text-xl text-[var(--text-muted)] leading-relaxed font-light">To create richly atmospheric, story-driven strategy games for discerning players, championing premium storytelling and tactical innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="innovations" class="section-divider fade-in-section" style="background-image: url('assets/Ashbound-logo.png'); background-attachment: fixed; background-size: cover; background-position: center;">
-            <div class="container mx-auto px-6 max-w-7xl relative z-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ashbound Engine: Innovations in Strategy</h2>
-                <p class="text-xl text-center enhanced-text mb-16 max-w-4xl mx-auto">This isn't just another turn-based RPG. We are building a platform for infinite stories, driven by three core innovations designed for maximum player engagement and replayability.</p>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="card p-6 rounded-xl flex flex-col">
-                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
-                            <svg class="icon-default h-24 w-24 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd" d="M11.484 2.172a.75.75 0 011.032 0l8.25 7.5a.75.75 0 01-.032 1.06l-8.25 7.5a.75.75 0 01-1.032-.032l-3.3-3.001a12.69 12.69 0 00-3.376-2.552.75.75 0 010-1.298 12.69 12.69 0 003.376-2.552l3.3-3.001z" clip-rule="evenodd" opacity="0.5"/>
-                                <path d="M4.125 7.508a.75.75 0 01.75-.658h14.25a.75.75 0 01.75.658m-15.75 9a.75.75 0 01.75.658h14.25a.75.75 0 01.75-.658"/>
-                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/>
-                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
-                            </svg>
-                            <svg class="icon-hover h-24 w-24 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
-                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd" stroke="#f1c40f" stroke-width="1.5"/>
-                                <path d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="#f1c40f"/>
-                                <path d="M9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" fill="#f1c40f"/>
-                                <path d="M15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#f1c40f"/>
-                                <path d="M4.5 9.75l-1.5 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-[var(--accent-red)] mb-2">The Blood Debt</h3>
-                        <p class="text-[var(--text-muted)] flex-grow font-light">In our world, no wound is forgotten. When a player fails to kill a powerful enemy, the spilled blood of the foe creates a Blood Debt. This debt twists the survivor, scarring their body and mind. They return not just as a veteran of a past battle, but as a zealous creditor hunting the player with new, terrifying abilities learned from the encounter. This system generates intensely personal vendettas and unscripted rivalries that form the heart of the player's story.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl flex flex-col">
-                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
-                            <svg class="icon-default h-24 w-24 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <svg class="icon-hover h-24 w-24 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.693L7.975 7.975M12 12.75h.008v.008H12v-.008z" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-[var(--accent-blue)] mb-2">The Echoes System</h3>
-                        <p class="text-[var(--text-muted)] flex-grow font-light">Your choices ripple through time. Finishing a playthrough creates "World Echoes" that alter subsequent games, turning a single story into a perpetually evolving world you'll explore for years.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl flex flex-col">
-                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
-                            <svg class="icon-default h-24 w-24 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
-                            <svg class="icon-hover h-24 w-24 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M3 7.5l3 1.5m-3 3l3-1.5m12 1.5l-3-1.5M6 9.75L9 12m6-2.25L9 12" /></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-green-400 mb-2">The Living Sanctum</h3>
-                        <p class="text-[var(--text-muted)] flex-grow font-light">Your home base is a dynamic sanctuary that visually evolves. The artisans you rescue and allies you make unlock unique questlines, turning your base into a core progression loop of its own.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="innovations" class="section-divider fade-in-section" style="background-image: url('assets/Ashbound_Filled_Black (1) (1).jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
+            <div class="container mx-auto px-6 max-w-7xl relative z-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ashbound Engine: Innovations in Strategy</h2>
+                <p class="text-xl text-center enhanced-text mb-16 max-w-4xl mx-auto">This isn't just another turn-based RPG. We are building a platform for infinite stories, driven by three core innovations designed for maximum player engagement and replayability.</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="card p-6 rounded-xl flex flex-col">
+                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
+                            <svg class="icon-default h-24 w-24 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" d="M11.484 2.172a.75.75 0 011.032 0l8.25 7.5a.75.75 0 01-.032 1.06l-8.25 7.5a.75.75 0 01-1.032-.032l-3.3-3.001a12.69 12.69 0 00-3.376-2.552.75.75 0 010-1.298 12.69 12.69 0 003.376-2.552l3.3-3.001z" clip-rule="evenodd" opacity="0.5"/>
+                                <path d="M4.125 7.508a.75.75 0 01.75-.658h14.25a.75.75 0 01.75.658m-15.75 9a.75.75 0 01.75.658h14.25a.75.75 0 01.75-.658"/>
+                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/>
+                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
+                            </svg>
+                            <svg class="icon-hover h-24 w-24 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
+                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd" stroke="#f1c40f" stroke-width="1.5"/>
+                                <path d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="#f1c40f"/>
+                                <path d="M9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" fill="#f1c40f"/>
+                                <path d="M15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#f1c40f"/>
+                                <path d="M4.5 9.75l-1.5 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[var(--accent-red)] mb-2">The Blood Debt</h3>
+                        <p class="text-[var(--text-muted)] flex-grow font-light">In our world, no wound is forgotten. When a player fails to kill a powerful enemy, the spilled blood of the foe creates a Blood Debt. This debt twists the survivor, scarring their body and mind. They return not just as a veteran of a past battle, but as a zealous creditor hunting the player with new, terrifying abilities learned from the encounter. This system generates intensely personal vendettas and unscripted rivalries that form the heart of the player's story.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl flex flex-col">
+                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
+                            <svg class="icon-default h-24 w-24 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <svg class="icon-hover h-24 w-24 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.693L7.975 7.975M12 12.75h.008v.008H12v-.008z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-[var(--accent-blue)] mb-2">The Echoes System</h3>
+                        <p class="text-[var(--text-muted)] flex-grow font-light">Your choices ripple through time. Finishing a playthrough creates "World Echoes" that alter subsequent games, turning a single story into a perpetually evolving world you'll explore for years.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl flex flex-col">
+                        <div class="relative icon-container h-24 w-24 mx-auto mb-4">
+                            <svg class="icon-default h-24 w-24 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+                            <svg class="icon-hover h-24 w-24 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M3 7.5l3 1.5m-3 3l3-1.5m12 1.5l-3-1.5M6 9.75L9 12m6-2.25L9 12" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-green-400 mb-2">The Living Sanctum</h3>
+                        <p class="text-[var(--text-muted)] flex-grow font-light">Your home base is a dynamic sanctuary that visually evolves. The artisans you rescue and allies you make unlock unique questlines, turning your base into a core progression loop of its own.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="ask" class="py-20 md:py-28 bg-black/20 fade-in-section">
-            <div class="container mx-auto px-6 max-w-7xl">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ask: Scalable Funding for Accelerated Growth</h2>
-                <p class="text-xl text-center text-[var(--text-muted)] mb-12 max-w-4xl mx-auto">We have a complete demo and a clear roadmap. We are seeking funding to complete our Steam Next Fest demo, scale marketing, and accelerate development towards full production.</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-gold)]/30">
-                        <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier A - Micro-Seed</h4>
-                        <h3 class="text-3xl font-bold text-[var(--accent-gold)] my-2">$10k</h3>
-                        <p class="font-semibold text-white mb-4">Polish Vertical Slice</p>
-                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Ideal for initial asset acquisition and software licensing to perfect our current slice.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-orange)]/50 transform md:scale-105 shadow-2xl bg-[var(--panel-bg-light)]">
-                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier B - Pre-Seed</h4>
-                        <h3 class="text-3xl font-bold text-[var(--accent-orange)] my-2">$250k</h3>
-                        <p class="font-semibold text-white mb-4">Steam Next Fest Demo</p>
-                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Our primary target. This funds team salaries and resources to create a standout demo for a major visibility event.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-blue)]/30">
-                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier C - Seed</h4>
-                        <h3 class="text-3xl font-bold text-[var(--accent-blue)] my-2">$1M</h3>
-                        <p class="font-semibold text-white mb-4">Alpha & Community Scale</p>
-                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Accelerates development to an Alpha state and funds a significant marketing push to scale our community.</p>
-                    </div>
-                     <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-purple)]/30">
-                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier D - Full Production</h4>
-                        <h3 class="text-3xl font-bold text-[var(--accent-purple)] my-2">$5M</h3>
-                        <p class="font-semibold text-white mb-4">Full Production & Launch</p>
-                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Secures the entire production cycle through launch, including a major marketing campaign.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="ask" class="py-20 md:py-28 bg-black/20 fade-in-section">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ask: Scalable Funding for Accelerated Growth</h2>
+                <p class="text-xl text-center text-[var(--text-muted)] mb-12 max-w-4xl mx-auto">We have a complete demo and a clear roadmap. We are seeking funding to complete our Steam Next Fest demo, scale marketing, and accelerate development towards full production.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-gold)]/30">
+                        <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier A - Micro-Seed</h4>
+                        <h3 class="text-3xl font-bold text-[var(--accent-gold)] my-2">$10k</h3>
+                        <p class="font-semibold text-white mb-4">Polish Vertical Slice</p>
+                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Ideal for initial asset acquisition and software licensing to perfect our current slice.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-orange)]/50 transform md:scale-105 shadow-2xl bg-[var(--panel-bg-light)]">
+                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier B - Pre-Seed</h4>
+                        <h3 class="text-3xl font-bold text-[var(--accent-orange)] my-2">$250k</h3>
+                        <p class="font-semibold text-white mb-4">Steam Next Fest Demo</p>
+                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Our primary target. This funds team salaries and resources to create a standout demo for a major visibility event.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-blue)]/30">
+                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier C - Seed</h4>
+                        <h3 class="text-3xl font-bold text-[var(--accent-blue)] my-2">$1M</h3>
+                        <p class="font-semibold text-white mb-4">Alpha & Community Scale</p>
+                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Accelerates development to an Alpha state and funds a significant marketing push to scale our community.</p>
+                    </div>
+                     <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-purple)]/30">
+                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier D - Full Production</h4>
+                        <h3 class="text-3xl font-bold text-[var(--accent-purple)] my-2">$5M</h3>
+                        <p class="font-semibold text-white mb-4">Full Production & Launch</p>
+                        <p class="text-sm text-[var(--text-muted)] flex-grow font-light">Secures the entire production cycle through launch, including a major marketing campaign.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="timeline" class="py-20 md:py-28 bg-[var(--bg-dark)] fade-in-section">
-            <div class="container mx-auto px-6 max-w-6xl">
-                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Funding Impact on Timeline</h2>
-                <div class="bg-[var(--panel-bg)] rounded-xl p-8 border border-[var(--border-color)]">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-                        <div class="md:col-span-1">
-                            <h3 class="text-3xl font-bold text-white mb-2">Runway & Velocity</h3>
-                            <p class="text-[var(--text-muted)] font-light">Each funding tier provides critical runway and directly reduces our time-to-market, allowing us to capitalize on the current opportunity faster.</p>
-                        </div>
-                        <div class="md:col-span-2 space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-gold)]">Tier A</span></div>
-                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-gold)] h-full rounded-full" data-width="5" style="width: 0%;" title="0.6 Months Runway"></div></div>
-                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~40</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-orange)]">Tier B</span></div>
-                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-orange)] h-full rounded-full" data-width="25" style="width: 0%;" title="5.6 Months Runway"></div></div>
-                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~28</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-blue)]">Tier C</span></div>
-                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-blue)] h-full rounded-full" data-width="40" style="width: 0%;" title="8.3 Months Runway"></div></div>
-                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~20</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-purple)]">Tier D</span></div>
-                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-purple)] h-full rounded-full" data-width="100" style="width: 0%;" title="22.7 Months Runway"></div></div>
-                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~16</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="timeline" class="py-20 md:py-28 bg-[var(--bg-dark)] fade-in-section">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center text-white">Funding Impact on Timeline</h2>
+                <div class="bg-[var(--panel-bg)] rounded-xl p-8 border border-[var(--border-color)]">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                        <div class="md:col-span-1">
+                            <h3 class="text-3xl font-bold text-white mb-2">Runway & Velocity</h3>
+                            <p class="text-[var(--text-muted)] font-light">Each funding tier provides critical runway and directly reduces our time-to-market, allowing us to capitalize on the current opportunity faster.</p>
+                        </div>
+                        <div class="md:col-span-2 space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-gold)]">Tier A</span></div>
+                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-gold)] h-full rounded-full" data-width="5" style="width: 0%;" title="0.6 Months Runway"></div></div>
+                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~40</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-orange)]">Tier B</span></div>
+                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-orange)] h-full rounded-full" data-width="25" style="width: 0%;" title="5.6 Months Runway"></div></div>
+                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~28</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-blue)]">Tier C</span></div>
+                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-blue)] h-full rounded-full" data-width="40" style="width: 0%;" title="8.3 Months Runway"></div></div>
+                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~20</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center w-24"><span class="font-bold text-lg text-[var(--accent-purple)]">Tier D</span></div>
+                                <div class="flex-1 bg-gray-700 rounded-full h-6 p-1"><div class="animate-bar bg-[var(--accent-purple)] h-full rounded-full" data-width="100" style="width: 0%;" title="22.7 Months Runway"></div></div>
+                                <div class="text-center w-48"><span class="font-bold text-lg text-white">~16</span><span class="text-sm text-[var(--text-muted)]"> Months</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="team" class="py-20 md:py-28 bg-black/20 fade-in-section">
-            <div class="container mx-auto px-6 max-w-7xl text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-white">Our Team of Industry Veterans</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="card p-6 rounded-xl">
-                        <img src="assets/Logan Byrd Headshot.png" alt="Logan Byrde" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
-                        <h3 class="text-2xl font-bold text-white">Logan Byrd</h3>
-                        <p class="text-[var(--accent-gold)] font-bold mb-2">CEO & Lead Writer</p>
-                        <p class="text-[var(--text-muted)] text-sm font-light">A former game developer and competitive Call of Duty player, Logan currently serves as a Program Manager.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl">
-                        <img src="assets/adam headshot.png" alt="Adam Chandler" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
-                        <h3 class="text-2xl font-bold text-white">Adam Chandler</h3>
-                        <p class="text-[var(--accent-gold)] font-bold mb-2">Lead Dev & Artist</p>
-                        <p class="text-[var(--text-muted)] text-sm font-light">A full-stack developer and digital artist with twenty years of experience building scalable software and systems. Adam specializes in creating efficient development pipelines that unite robust backend systems with compelling visual design.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl">
-                        <img src="assets/Blitz headshot.png" alt="Blitz Yeager" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
-                        <h3 class="text-2xl font-bold text-white">Blitz Yeager</h3>
-                        <p class="text-[var(--accent-gold)] font-bold mb-2">Dev & Lead Artist</p>
-                        <p class="text-[var(--text-muted)] text-sm font-light">With a professional background ranging from rapid deconstruction to risk management and integration, Blitz brings a varied skillset and fresh viewpoint to game development.</p>
-                    </div>
-                    <div class="card p-6 rounded-xl">
-                        <img src="assets/Isaiah Headshot.png" alt="Isaiah Chandler" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
-                        <h3 class="text-2xl font-bold text-white">Isaiah Chandler</h3>
-                        <p class="text-[var(--accent-gold)] font-bold mb-2">Marketing & Operations</p>
-                        <p class="text-[var(--text-muted)] text-sm font-light">A creative and analytical marketing strategist who excels at turning customer feedback into fuel for scalable growth. Isaiah's experience is in building brand-focused communities and optimizing campaigns for customer engagement. </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        <section id="team" class="py-20 md:py-28 bg-black/20 fade-in-section">
+            <div class="container mx-auto px-6 max-w-7xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-white">Our Team of Industry Veterans</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card p-6 rounded-xl">
+                        <img src="assets/Logan Byrd Headshot.png" alt="Logan Byrde" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
+                        <h3 class="text-2xl font-bold text-white">Logan Byrd</h3>
+                        <p class="text-[var(--accent-gold)] font-bold mb-2">CEO & Lead Writer</p>
+                        <p class="text-[var(--text-muted)] text-sm font-light">A former game developer and competitive Call of Duty player, Logan currently serves as a Program Manager.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl">
+                        <img src="assets/adam headshot.png" alt="Adam Chandler" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
+                        <h3 class="text-2xl font-bold text-white">Adam Chandler</h3>
+                        <p class="text-[var(--accent-gold)] font-bold mb-2">Lead Dev & Artist</p>
+                        <p class="text-[var(--text-muted)] text-sm font-light">A full-stack developer and digital artist with twenty years of experience building scalable software and systems. Adam specializes in creating efficient development pipelines that unite robust backend systems with compelling visual design.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl">
+                        <img src="assets/Blitz headshot.png" alt="Blitz Yeager" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
+                        <h3 class="text-2xl font-bold text-white">Blitz Yeager</h3>
+                        <p class="text-[var(--accent-gold)] font-bold mb-2">Dev & Lead Artist</p>
+                        <p class="text-[var(--text-muted)] text-sm font-light">With a professional background ranging from rapid deconstruction to risk management and integration, Blitz brings a varied skillset and fresh viewpoint to game development.</p>
+                    </div>
+                    <div class="card p-6 rounded-xl">
+                        <img src="assets/Isaiah Headshot.png" alt="Isaiah Chandler" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white/20 object-cover">
+                        <h3 class="text-2xl font-bold text-white">Isaiah Chandler</h3>
+                        <p class="text-[var(--text-muted)] text-sm font-light">A creative and analytical marketing strategist who excels at turning customer feedback into fuel for scalable growth. Isaiah's experience is in building brand-focused communities and optimizing campaigns for customer engagement. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="bg-[var(--bg-dark)] py-12 border-t border-white/10">
-        <div class="container mx-auto px-6 text-center">
-            <img src="assets/Ashbound-logo.png" alt="Ashbound Studios Logo Text" class="h-12 mx-auto mb-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Join Us in Rebuilding the Legacy</h2>
-            <p class="text-lg text-[var(--text-muted)] mb-8 font-light">Let's build the next legend of independent gaming. Together.</p>
-            <div>
-                 <p class="text-white font-bold">Contact:</p>
-                 <p class="text-[var(--accent-gold)]">Isaiah Chandler, Marketing & Operations</p>
-                 <p class="text-[var(--text-muted)]">ichandler@ashboundstudios.com</p>
-                 <p class="text-[var(--text-muted)]">256-469-3123</p>
-            </div>
-            <p class="text-sm mt-12 text-gray-500">&copy; 2025 Ashbound Studios. All Rights Reserved. Confidential & Proprietary.</p>
-        </div>
-    </footer>
+    <footer class="bg-[var(--bg-dark)] py-12 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center">
+            <img src="assets/Ashbound_Filled_Black (1) (1).jpg" alt="Ashbound Studios Logo Text" class="h-12 mx-auto mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Join Us in Rebuilding the Legacy</h2>
+            <p class="text-lg text-[var(--text-muted)] mb-8 font-light">Let's build the next legend of independent gaming. Together.</p>
+            <div>
+                 <p class="text-white font-bold">Contact:</p>
+                 <p class="text-[var(--accent-gold)]">Isaiah Chandler, Marketing & Operations</p>
+                 <p class="text-[var(--text-muted)]">ichandler@ashboundstudios.com</p>
+                 <p class="text-[var(--text-muted)]">256-469-3123</p>
+            </div>
+            <p class="text-sm mt-12 text-gray-500">&copy; 2025 Ashbound Studios. All Rights Reserved. Confidential & Proprietary.</p>
+        </div>
+    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Embers Effect ---
-            const container = document.getElementById('ember-container');
-            if (container) {
-                const emberCount = 25;
-                for (let i = 0; i < emberCount; i++) {
-                    const ember = document.createElement('div');
-                    ember.className = 'ember';
-                    const size = Math.random() * 4 + 1;
-                    ember.style.width = `${size}px`;
-                    ember.style.height = `${size}px`;
-                    ember.style.left = `${Math.random() * 100}%`;
-                    ember.style.animationDuration = `${Math.random() * 7 + 6}s`;
-                    ember.style.animationDelay = `${Math.random() * 7}s`;
-                    container.appendChild(ember);
-                }
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Embers Effect ---
+            const container = document.getElementById('ember-container');
+            if (container) {
+                const emberCount = 25;
+                for (let i = 0; i < emberCount; i++) {
+                    const ember = document.createElement('div');
+                    ember.className = 'ember';
+                    const size = Math.random() * 4 + 1;
+                    ember.style.width = `${size}px`;
+                    ember.style.height = `${size}px`;
+                    ember.style.left = `${Math.random() * 100}%`;
+                    ember.style.animationDuration = `${Math.random() * 7 + 6}s`;
+                    ember.style.animationDelay = `${Math.random() * 7}s`;
+                    container.appendChild(ember);
+                }
+            }
 
-            // --- Flame Animation ---
-            const turbulence = document.querySelector('#flame-turbulence');
-            if(turbulence) {
-                let frame = 0;
-                function animateTurbulence() {
-                    turbulence.setAttribute('seed', frame++);
-                    requestAnimationFrame(animateTurbulence);
-                }
-                animateTurbulence();
-            }
+            // --- Flame Animation ---
+            const turbulence = document.querySelector('#flame-turbulence');
+            if(turbulence) {
+                let frame = 0;
+                function animateTurbulence() {
+                    turbulence.setAttribute('seed', frame++);
+                    requestAnimationFrame(animateTurbulence);
+                }
+                animateTurbulence();
+            }
 
-            // --- Intersection Observer for Animations ---
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        
-                        // Animate numbers
-                        const numbers = entry.target.querySelectorAll('[data-animate-number]');
-                        numbers.forEach(num => {
-                            const target = parseFloat(num.dataset.animateNumber);
-                            if(num.dataset.animated) return;
-                            num.dataset.animated = true;
-                            animateValue(num, 0, target, 1500);
-                        });
+            // --- Intersection Observer for Animations ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        // Animate numbers
+                        const numbers = entry.target.querySelectorAll('[data-animate-number]');
+                        numbers.forEach(num => {
+                            const target = parseFloat(num.dataset.animateNumber);
+                            if(num.dataset.animated) return;
+                            num.dataset.animated = true;
+                            animateValue(num, 0, target, 1500);
+                        });
 
-                        // Animate bars
-                        const bars = entry.target.querySelectorAll('.animate-bar');
-                        bars.forEach(bar => {
-                             if(bar.dataset.animated) return;
-                             bar.dataset.animated = true;
-                             bar.style.transition = 'width 1.5s ease-in-out';
-                             bar.style.width = bar.dataset.width + '%';
-                        });
+                        // Animate bars
+                        const bars = entry.target.querySelectorAll('.animate-bar');
+                        bars.forEach(bar => {
+                             if(bar.dataset.animated) return;
+                             bar.dataset.animated = true;
+                             bar.style.transition = 'width 1.5s ease-in-out';
+                             bar.style.width = bar.dataset.width + '%';
+                        });
 
-                    }
-                });
-            }, { threshold: 0.1 });
+                    }
+                });
+            }, { threshold: 0.1 });
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
 
-            // --- Animate Number Function ---
-            function animateValue(obj, start, end, duration) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    let currentValue = progress * (end - start);
-                    // Check if it's a float or int
-                    if (end % 1 !== 0) {
-                        obj.innerHTML = currentValue.toFixed(2);
-                    } else {
-                        obj.innerHTML = Math.floor(currentValue);
-                    }
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-            
-            // --- Active Nav Link Highlighting ---
-            const navLinks = document.querySelectorAll('#nav-links a');
-            const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, { rootMargin: "-50% 0px -50% 0px" });
+            // --- Animate Number Function ---
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    let currentValue = progress * (end - start);
+                    // Check if it's a float or int
+                    if (end % 1 !== 0) {
+                        obj.innerHTML = currentValue.toFixed(2);
+                    } else {
+                        obj.innerHTML = Math.floor(currentValue);
+                    }
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // --- Active Nav Link Highlighting ---
+            const navLinks = document.querySelectorAll('#nav-links a');
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
 
-            document.querySelectorAll('main section, header').forEach(section => {
-                navObserver.observe(section);
-            });
+            document.querySelectorAll('main section, header').forEach(section => {
+                navObserver.observe(section);
+            });
 
-        });
-    </script>
+        });
+    </script>
 </body>
 </html>
