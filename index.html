@@ -6,7 +6,6 @@
     <title>Ashbound Studios - Visionary Pitch Deck</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -14,7 +13,6 @@
     <link rel="icon" href="assets/Ashy_No-BG.png">
 
     <style>
-        /* CSS Variables for a consistent color palette */
         :root {
             --bg-dark: #0a080f;
             --panel-bg: rgba(22, 18, 29, 0.8);
@@ -27,82 +25,24 @@
             --accent-blue: #3498db;
             --accent-purple: #9b59b6;
             --border-color: rgba(241, 196, 15, 0.2);
-            --panel-border: rgba(160, 174, 192, 0.2);
-
-            --font-family-heading: 'Cinzel', serif;
-            --font-family-body: 'Roboto', sans-serif;
-        }
-
-        /* --- 1. BASE & RESET --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 2rem;
         }
 
         body {
-            font-family: var(--font-family-body);
+            font-family: 'Roboto', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- 2. LAYOUT & HELPERS --- */
-        .component-section {
-            padding: 3rem 0;
-            border-bottom: 1px solid var(--panel-border);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
         }
-        .component-section:last-child { border-bottom: none; }
-        .component-header { margin-bottom: 2rem; }
-        .component-grid { display: grid; gap: 1.5rem; }
-
-        /* --- 3. TYPOGRAPHY --- */
-        h1, h2, h3, h4 {
-            font-family: var(--font-family-heading);
-            color: var(--text-light);
-            font-weight: 700;
-            line-height: 1.2;
-            text-shadow: 0 0 8px rgba(22,18,29,0.8);
-        }
-        h1 { font-size: 3rem; margin-bottom: 1rem; letter-spacing: 1px; }
-        h2 { font-size: 2.25rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--panel-border); padding-bottom: 0.5rem; }
-        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        h4 { font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
-        p, li { font-size: 1rem; color: var(--text-light); margin-bottom: 1rem; }
-        p.muted { color: var(--text-muted); }
-        a { color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
-        a:hover { color: var(--text-light); text-decoration: underline; }
-        /* Enhanced paragraph style for the specific text */
-        .enhanced-text {
-            color: var(--accent-gold);
-            text-shadow: 0 0 5px var(--accent-orange), 0 0 10px var(--accent-red);
-            font-weight: 500;
-        }
-
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Hero section background effects */
+        
         .hero-bg {
             filter: brightness(0.5) saturate(1.2);
             transform: scale(1.05);
         }
         
-        /* Unique flame-like text effect for the main title */
         .flame-title {
             font-weight: 700;
             color: transparent;
@@ -116,32 +56,12 @@
             animation: flame-lick 6s infinite linear;
         }
 
-        /* Keyframes for the flame text animation */
         @keyframes flame-lick {
             0% { background-position: 0% 100%; }
             50% { background-position: 0% 0%; }
             100% { background-position: 0% 100%; }
         }
 
-        /* New styles for the fiery image animation */
-        .fiery-image-container {
-            position: relative;
-            width: 250px; /* Adjust size as needed */
-            height: 250px; /* Adjust size as needed */
-        }
-
-        .fiery-image {
-            animation: scalePulse 2s infinite ease-in-out;
-            filter: drop-shadow(0 0 15px var(--accent-orange)) drop-shadow(0 0 30px var(--accent-red));
-        }
-
-        @keyframes scalePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Section divider styling with gradient overlays for a seamless look */
         .section-divider {
             position: relative;
             padding-top: 8rem;
@@ -164,8 +84,20 @@
             bottom: 0;
             background: linear-gradient(to top, var(--bg-dark), transparent);
         }
+
+        .card {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(241, 196, 15, 0.25);
+        }
         
-        /* Navigation link styling with an active/hover underline effect */
         .nav-item {
             position: relative;
             color: var(--text-muted);
@@ -193,7 +125,6 @@
             width: 100%;
         }
 
-        /* Embers particle effect styling */
         .ember-container {
             position: fixed;
             top: 0;
@@ -212,13 +143,12 @@
             animation: rise 10s infinite ease-in;
             box-shadow: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange);
         }
-        /* Keyframes for the embers to rise and fade out */
         @keyframes rise {
             0% { transform: translateY(100vh) scale(1); opacity: 1; }
             100% { transform: translateY(-10vh) scale(0); opacity: 0; }
         }
 
-        /* Animation for sections fading in on scroll */
+        /* Animation for elements fading in on scroll */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -229,130 +159,11 @@
             transform: translateY(0);
         }
         
-        /* Interactive icon styles for the innovations section */
+        /* Interactive icon styles */
         .icon-container .icon-default { transition: opacity 0.3s ease, transform 0.3s ease; }
         .icon-container .icon-hover { opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; position: absolute; top:0; left:0; right:0; bottom:0; margin:auto; transform: scale(0.95); }
         .card:hover .icon-container .icon-default { opacity: 0; transform: scale(1.05); }
         .card:hover .icon-container .icon-hover { opacity: 1; transform: scale(1); }
-
-        /* Card styles from asset library */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; }
-        .card {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
-        .card-header { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(0,0,0,0.2); }
-        .card-header .ash-icon { --icon-size: 24px; }
-        .card-header .ash-icon, .card-header .ash-icon:hover { transform: none; filter: none; } /* Override hover for static card icons */
-        .card-header .ash-icon .primary-stroke { stroke: var(--accent-gold); }
-        .card-header h3 { margin: 0; font-size: 1.25rem; }
-        .card-body { padding: 1.5rem; flex-grow: 1; }
-        .card-body p { margin-bottom: 0; color: var(--text-muted); }
-        .card-footer { padding: 0 1.5rem 1.5rem; margin-top: auto; }
-        .card-footer .btn { width: 100%; }
-
-        /* Button styles from asset library */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-family: var(--font-family-heading);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .btn:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
-        .btn::before { /* Shimmer effect */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -75%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: left 0.7s ease;
-        }
-        .btn:hover::before { left: 125%; }
-        
-        .btn-primary { background: linear-gradient(45deg, var(--accent-orange), var(--accent-red)); color: var(--text-light); border-color: var(--accent-gold); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); }
-        .btn-secondary { background-color: var(--panel-bg); color: var(--text-light); border-color: var(--panel-border); }
-        .btn-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: var(--text-light); }
-        .btn-ghost { background-color: transparent; color: var(--text-muted); border-color: transparent; }
-        .btn-ghost:hover { color: var(--text-light); background-color: rgba(255,255,255,0.05); }
-
-        .btn-sm { font-size: 0.75rem; padding: 0.5rem 1rem; }
-        .btn-md { font-size: 0.9rem; padding: 0.75rem 1.5rem; }
-        .btn-lg { font-size: 1.1rem; padding: 1rem 2rem; }
-
-        /* Dividers - Rift of Embers */
-        .divider { width: 100%; text-align: center; }
-        .divider-ember-crack {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .divider-ember-crack .crack-path {
-            stroke: var(--accent-red);
-            stroke-width: 1;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: draw-crack 3s ease-out forwards;
-        }
-        .divider-ember-crack .flame {
-            opacity: 0;
-            transform-origin: bottom center;
-            animation: flicker-flame 2s infinite ease-in-out;
-        }
-        .divider-ember-crack .flame.f1 { animation-delay: 0.2s; animation-duration: 2.5s; }
-        .divider-ember-crack .flame.f2 { animation-delay: 0.5s; animation-duration: 1.8s; }
-        .divider-ember-crack .flame.f3 { animation-delay: 0.1s; animation-duration: 2.2s; }
-        .divider-ember-crack .flame.f4 { animation-delay: 0.8s; animation-duration: 2s; }
-        .divider-ember-crack .flame.f5 { animation-delay: 1.2s; animation-duration: 1.9s; }
-        
-        @keyframes draw-crack {
-            to { stroke-dashoffset: 0; }
-        }
-        @keyframes flicker-flame {
-            0%, 100% { transform: scaleY(0.8) skewX(-2deg); opacity: 0.7; }
-            50% { transform: scaleY(1.0) skewX(2deg); opacity: 1; }
-            75% { transform: scaleY(0.9); opacity: 0.9; }
-        }
-
-        .divider-gem {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background: var(--accent-red);
-            transform: rotate(45deg);
-            box-shadow: 0 0 5px var(--accent-red), 0 0 10px var(--accent-orange);
-            animation: pulse-gem 2.5s infinite ease-in-out;
-        }
-        @keyframes pulse-gem {
-            0%, 100% { transform: rotate(45deg) scale(0.8); box-shadow: 0 0 3px var(--accent-red), 0 0 6px var(--accent-orange); }
-            50% { transform: rotate(45deg) scale(1); box-shadow: 0 0 8px var(--accent-red), 0 0 15px var(--accent-orange); }
-        }
-        
     </style>
 </head>
 <body class="antialiased">
@@ -365,21 +176,17 @@
                 </feTurbulence>
                 <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="3" />
             </filter>
-            <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" style="stop-color:var(--accent-red);stop-opacity:1" />
-                <stop offset="60%" style="stop-color:var(--accent-orange);stop-opacity:1" />
-                <stop offset="100%" style="stop-color:var(--accent-gold);stop-opacity:1" />
-            </linearGradient>
         </defs>
     </svg>
 
     <div class="ember-container" id="ember-container"></div>
 
-    <nav id="navbar" class="sticky top-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10 shadow-lg transition-all duration-300 transform scale-100 md:scale-100 hover:scale-105">
+    <nav id="navbar" class="sticky top-0 z-50 bg-black/30 backdrop-blur-lg border-b border-white/10 shadow-lg transition-all duration-300">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center py-4">
                 <a href="#home" class="flex items-center space-x-2">
-                    <img src="assets/ashbound-logo.png" alt="Ashbound Studios Logo Text" class="h-10">
+                    <img src="assets/ashbound-logo.png" alt="Ashbound Logo" class="h-10">
+                    <span class="text-xl font-bold text-white hidden sm:block">Ashbound Studios</span>
                 </a>
                 <div class="hidden md:flex items-center space-x-8" id="nav-links">
                     <a href="#problem" class="nav-item">The Problem</a>
@@ -388,7 +195,7 @@
                     <a href="#ask" class="nav-item">The Ask</a>
                     <a href="#team" class="nav-item">The Team</a>
                 </div>
-                <a href="#ask" class="md:hidden inline-block btn btn-primary btn-md">
+                <a href="#ask" class="md:hidden inline-block bg-[var(--accent-gold)] text-gray-900 font-bold py-2 px-4 rounded-lg text-sm uppercase tracking-wide hover:bg-[var(--accent-orange)] transition-all duration-300 shadow-lg transform hover:scale-105">
                     The Ask
                 </a>
             </div>
@@ -396,15 +203,15 @@
     </nav>
 
     <header id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-        <div class="absolute inset-0 hero-bg bg-center bg-cover" style="background-image: url('assets/ashbound-logo.png');"></div>
+        <div class="absolute inset-0 hero-bg bg-center bg-cover" style="background-image: url('assets/Ashvale_Map.jpg');"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-dark)] via-transparent to-transparent"></div>
         <div class="relative z-10 p-8">
-            <img src="assets/Ashy_No-BG.png" alt="ahyboy" class="mx-auto mb-8 h-24 md:h-32">
+            <img src="assets/Ashy_No-BG.png" alt="Ashbound Studios Logo" class="mx-auto mb-8 h-24 md:h-32">
             <h1 class="flame-title text-5xl md:text-7xl lg:text-8xl uppercase">
                 The Ashbound
             </h1>
             <p class="text-2xl md:text-3xl text-[var(--accent-gold)] font-light mt-4 mb-8">The Gods Fall. A World is Reborn.</p>
-            <a href="#problem" class="inline-block btn btn-primary btn-lg">
+            <a href="#problem" class="inline-block bg-[var(--accent-gold)] text-gray-900 font-bold py-4 px-10 rounded-lg text-lg uppercase tracking-wide hover:bg-[var(--accent-orange)] transition-all duration-300 shadow-lg transform hover:scale-105">
                 Discover the Legacy
             </a>
         </div>
@@ -459,10 +266,6 @@
             </div>
         </section>
 
-        <div class="divider pt-12">
-            <div class="divider-gem"></div>
-        </div>
-
         <section id="solution" class="py-20 md:py-28 bg-[var(--bg-dark)] fade-in-section">
             <div class="container mx-auto px-6 max-w-6xl text-center">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">Passionate Development by Gamers, for Gamers</h2>
@@ -480,10 +283,10 @@
             </div>
         </section>
 
-        <section id="innovations" class="section-divider fade-in-section" style="background-image: url('assets/ashbound-logo.png'); background-attachment: fixed; background-size: cover; background-position: center;">
+        <section id="innovations" class="section-divider fade-in-section" style="background-image: url('assets/Ashvale_Map.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
             <div class="container mx-auto px-6 max-w-7xl relative z-20">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ashbound Engine: Innovations in Strategy</h2>
-                <p class="text-xl text-center enhanced-text mb-16 max-w-4xl mx-auto">This isn't just another turn-based RPG. We are building a platform for infinite stories, driven by three core innovations designed for maximum player engagement and replayability.</p>
+                <p class="text-xl text-center text-[var(--text-muted)] mb-16 max-w-4xl mx-auto">This isn't just another turn-based RPG. We are building a platform for infinite stories, driven by three core innovations designed for maximum player engagement and replayability.</p>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
                     <div class="card p-6 rounded-xl flex flex-col">
                         <div class="relative icon-container h-24 w-24 mx-auto mb-4">
@@ -517,7 +320,7 @@
                     <div class="card p-6 rounded-xl flex flex-col">
                         <div class="relative icon-container h-24 w-24 mx-auto mb-4">
                             <svg class="icon-default h-24 w-24 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
-                            <svg class="icon-hover h-24 w-24 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M3 7.5l3 1.5m-3 3l3-1.5m12 1.5l-3-1.5M6 9.75L9 12m6-2.25L9 12" /></svg>
+                            <svg class="icon-hover h-24 w-24 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M3 7.5l3 1.5M3 12l3-1.5m12 1.5l-3-1.5M6 9.75L9 12m6-2.25L9 12" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold text-green-400 mb-2">The Living Sanctum</h3>
                         <p class="text-[var(--text-muted)] flex-grow font-light">Your home base is a dynamic sanctuary that visually evolves. The artisans you rescue and allies you make unlock unique questlines, turning your base into a core progression loop of its own.</p>
