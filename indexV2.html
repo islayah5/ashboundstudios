@@ -93,37 +93,23 @@
             transform: scale(1.05);
         }
         
-        /* Unique flame-like text effect for the main title */
-        .flame-title {
-            font-weight: 700;
-            color: transparent; /* Keep this for text version, but will be overridden for image */
-            background: linear-gradient(to top, var(--accent-red) 10%, var(--accent-orange) 50%, var(--accent-gold) 80%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            background-size: 100% 250%;
-            background-position: 0% 100%;
-            text-shadow: 0 0 10px rgba(230, 126, 34, 0.5), 0 0 20px rgba(192, 57, 43, 0.5);
-            filter: url(#flame-filter);
-            animation: flame-lick 6s infinite linear;
-        }
-
-        /* NEW: Image-based title with flame effect */
+        /* UPDATED: Image-based title with a more subtle flame/glow effect */
         .flame-image-title {
             filter: url(#flame-filter) drop-shadow(0 0 10px rgba(230, 126, 34, 0.5)) drop-shadow(0 0 20px rgba(192, 57, 43, 0.5));
-            animation: flame-pulse 6s infinite linear;
-            mix-blend-mode: lighten; /* Helps blend with potential background glow */
+            animation: flame-pulse 10s infinite ease-in-out; /* Slower, smoother pulse */
+            mix-blend-mode: lighten;
         }
+
         @keyframes flame-pulse {
-            0% { filter: url(#flame-filter) drop-shadow(0 0 8px rgba(230, 126, 34, 0.4)) drop-shadow(0 0 16px rgba(192, 57, 43, 0.4)); }
-            50% { filter: url(#flame-filter) drop-shadow(0 0 12px rgba(230, 126, 34, 0.6)) drop-shadow(0 0 24px rgba(192, 57, 43, 0.6)); }
-            100% { filter: url(#flame-filter) drop-shadow(0 0 8px rgba(230, 126, 34, 0.4)) drop-shadow(0 0 16px rgba(192, 57, 43, 0.4)); }
-        }
-
-
-        @keyframes flame-lick {
-            0% { background-position: 0% 100%; }
-            50% { background-position: 0% 0%; }
-            100% { background-position: 0% 100%; }
+            0% {
+                filter: url(#flame-filter) drop-shadow(0 0 10px rgba(230, 126, 34, 0.5)) drop-shadow(0 0 20px rgba(192, 57, 43, 0.5));
+            }
+            50% {
+                filter: url(#flame-filter) drop-shadow(0 0 15px rgba(230, 126, 34, 0.7)) drop-shadow(0 0 30px rgba(192, 57, 43, 0.7));
+            }
+            100% {
+                filter: url(#flame-filter) drop-shadow(0 0 10px rgba(230, 126, 34, 0.5)) drop-shadow(0 0 20px rgba(192, 57, 43, 0.5));
+            }
         }
 
         /* Section divider styling with gradient overlays */
@@ -214,7 +200,7 @@
             transform: translateY(0);
         }
 
-        /* NEW: Section Header Animation */
+        /* Section Header Animation */
         .fade-in-section h2 {
             opacity: 0;
             transform: translateY(20px);
@@ -246,7 +232,7 @@
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
         
-        /* NEW: Enchanted Animated Border for Cards - Updated Colors */
+        /* Enchanted Animated Border for Cards - Updated Colors */
         @property --angle {
             syntax: '<angle>';
             initial-value: 0deg;
@@ -284,7 +270,6 @@
             to { --angle: 360deg; }
         }
 
-
         /* Button styles */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -306,7 +291,7 @@
         .btn-md { font-size: 0.9rem; padding: 0.75rem 1.5rem; }
         .btn-lg { font-size: 1.1rem; padding: 1rem 2rem; }
         
-        /* NEW: Runway & Velocity Section Styles */
+        /* Runway & Velocity Section Styles */
         .runway-container .runway-tier {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
@@ -332,11 +317,9 @@
     <svg style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="flame-filter">
-                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.1 0.4" numOctaves="3" seed="0">
-                    <animate attributeName="baseFrequency" values="0.1 0.4; .06 5; 1 0.4" dur="55s" repeatCount="indefinite" />
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="3" />
-            </filter>
+                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="2" seed="0">
+                    </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="2" /> </filter>
         </defs>
     </svg>
 
@@ -651,7 +634,6 @@
                     turbulence.setAttribute('seed', frame++);
                     requestAnimationFrame(animateTurbulence);
                 }
-                // Only start if the element is present.
                 animateTurbulence();
             }
 
@@ -727,6 +709,10 @@
                 navObserver.observe(section);
             });
 
+        });
+    </script>
+</body>
+</html>
         });
     </script>
 </body>
