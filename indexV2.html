@@ -93,16 +93,12 @@
             transform: scale(1.05);
         }
         
-        /* UPDATED: Image-based title with a static flame/glow effect for performance */
         .flame-image-title {
             filter: url(#flame-filter) drop-shadow(0 0 12px rgba(230, 126, 34, 0.6)) drop-shadow(0 0 24px rgba(192, 57, 43, 0.6));
             mix-blend-mode: lighten;
-            /* The 'animation' property has been removed to stop the flashing effect */
         }
 
-        /* The @keyframes flame-pulse animation was removed to fix the flashing */
-
-        /* Section divider styling with gradient overlays */
+        /* Section divider styling */
         .section-divider {
             position: relative;
             padding-top: 8rem;
@@ -154,13 +150,11 @@
             width: 100%;
         }
 
-        /* Embers particle effect */
+        /* Main embers particle effect */
         .ember-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 999;
             overflow: hidden;
@@ -173,13 +167,12 @@
             animation: rise 10s infinite ease-in;
             box-shadow: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange);
         }
-        
         @keyframes rise {
             0% { transform: translateY(100vh) scale(1); opacity: 1; }
             100% { transform: translateY(-10vh) scale(0); opacity: 0; }
         }
 
-        /* Animation for sections fading in on scroll */
+        /* Fade-in animations */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -189,8 +182,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Section Header Animation */
         .fade-in-section h2 {
             opacity: 0;
             transform: translateY(20px);
@@ -218,46 +209,61 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            position: relative; /* Needed for enchanted border */
+            position: relative;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-gold); }
-        
-        /* Enchanted Animated Border for Cards - Updated Colors */
-        @property --angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            border-color: rgba(241, 196, 15, 0.5); 
         }
 
-        .card-enchanted-border::before {
-            content: '';
+        /* --- ENHANCED: Card Hover Smoke & Embers Effect --- */
+        .card-effect-container {
             position: absolute;
-            top: -2px; left: -2px;
-            height: calc(100% + 4px);
-            width: calc(100% + 4px);
-            background: conic-gradient(from var(--angle), 
-                transparent 0%, 
-                #a0522d 10%, /* Burnt Orange */
-                transparent 35%,
-                #c0392b 50%, /* Red */
-                transparent 60%,
-                #f1c40f 90%, /* Yellow */
-                transparent 100%
-            );
-            border-radius: 10px;
-            z-index: -1;
-            animation: spin 8s linear infinite;
+            bottom: 0; left: 0;
+            width: 100%; height: 60%;
+            pointer-events: none;
+            overflow: hidden;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.4s ease-in-out;
+            border-radius: 0 0 8px 8px;
+            /* Add a subtle glow at the bottom of the card */
+            background: radial-gradient(ellipse at bottom, rgba(230, 126, 34, 0.25) 0%, transparent 70%);
         }
-        .card-enchanted-border:hover::before {
-            opacity: 0.8;
-            animation-duration: 4s; /* Speed up on hover */
+        .card:hover .card-effect-container {
+            opacity: 1;
+        }
+        .card-ember, .card-smoke {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            border-radius: 50%;
+            opacity: 0;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        .card-ember {
+            background-color: var(--accent-orange);
+            box-shadow: 0 0 6px var(--accent-orange), 0 0 10px var(--accent-red);
+            animation-name: card-rise;
+        }
+        .card-smoke {
+            /* Infuse smoke with a dark red hue */
+            background: radial-gradient(circle, rgba(192, 57, 43, 0.2) 0%, rgba(80, 80, 80, 0.1) 40%, transparent 70%);
+            animation-name: smoke-rise;
         }
 
-        @keyframes spin {
-            from { --angle: 0deg; }
-            to { --angle: 360deg; }
+        @keyframes card-rise {
+            0% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+            80% { opacity: 0.4; }
+            /* Embers fade out quickly and don't travel as high */
+            100% { transform: translate(-50%, -90px) scale(0); opacity: 0; }
+        }
+        @keyframes smoke-rise {
+            0% { transform: translate(-50%, 0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.6; }
+            /* Smoke rises higher and spreads out more */
+            100% { transform: translate(-50%, -180px) scale(1.8); opacity: 0; }
         }
 
         /* Button styles */
@@ -285,15 +291,8 @@
         .runway-container .runway-tier {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        /* Make other tiers semi-transparent on hover */
-        .runway-container:hover .runway-tier {
-            opacity: 0.5;
-        }
-        /* Bring the hovered tier back to full opacity and scale it */
-        .runway-container .runway-tier:hover {
-            opacity: 1;
-            transform: scale(1.03);
-        }
+        .runway-container:hover .runway-tier { opacity: 0.5; }
+        .runway-container .runway-tier:hover { opacity: 1; transform: scale(1.03); }
 
         /* Stylized logo class */
         .stylized-logo {
@@ -307,9 +306,9 @@
     <svg style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="flame-filter">
-                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="2" seed="0">
-                    </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="2" /> </filter>
+                <feTurbulence id="flame-turbulence" type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="2" seed="0"></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="flame-turbulence" scale="2" />
+            </filter>
         </defs>
     </svg>
 
@@ -328,9 +327,7 @@
                     <a href="#ask" class="nav-item">The Ask</a>
                     <a href="#team" class="nav-item">The Team</a>
                 </div>
-                <a href="#ask" class="md:hidden inline-block btn btn-primary btn-md">
-                    The Ask
-                </a>
+                <a href="#ask" class="md:hidden inline-block btn btn-primary btn-md">The Ask</a>
             </div>
         </div>
     </nav>
@@ -340,13 +337,9 @@
         <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-dark)] via-transparent to-transparent"></div>
         <div class="relative z-10 p-8">
             <img src="assets/Ashweaver-hood-no_bg.png" alt="Ashbound Icon" class="mx-auto mb-8 h-24 md:h-32">
-            
             <img src="assets/AshboundV2.png" alt="The Ashbound Studios" class="flame-image-title mx-auto mb-4 w-64 md:w-96 lg:w-[600px]">
-
             <p class="text-2xl md:text-3xl text-[var(--accent-gold)] font-light mt-4 mb-8">The Gods Fall. A World is Reborn.</p>
-            <a href="#problem" class="inline-block btn btn-primary btn-lg">
-                Discover the Legacy
-            </a>
+            <a href="#problem" class="inline-block btn btn-primary btn-lg">Discover the Legacy</a>
         </div>
     </header>
 
@@ -371,26 +364,17 @@
                         <div class="space-y-4 text-left">
                             <div>
                                 <p class="font-bold text-[var(--accent-gold)]">Total Addressable Market (TAM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="18">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
+                                <div class="flex items-baseline"><span class="text-3xl font-black" data-animate-number="18">0</span><span class="text-3xl font-black">B</span></div>
                                 <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Global Strategy, 2024)</p>
                             </div>
                             <div>
                                 <p class="font-bold text-[var(--accent-orange)]">Serviceable Addressable Market (SAM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="17.7">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
+                                <div class="flex items-baseline"><span class="text-3xl font-black" data-animate-number="17.7">0</span><span class="text-3xl font-black">B</span></div>
                                 <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Online Strategy, 2023)</p>
                             </div>
                             <div>
                                 <p class="font-bold text-[var(--accent-blue)]">Serviceable Obtainable Market (SOM)</p>
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-black" data-animate-number="2.96">0</span>
-                                    <span class="text-3xl font-black">B</span>
-                                </div>
+                                <div class="flex items-baseline"><span class="text-3xl font-black" data-animate-number="2.96">0</span><span class="text-3xl font-black">B</span></div>
                                 <p class="text-sm font-light text-[var(--text-muted)] -mt-1">(Premium Indie RPG, 2025)</p>
                             </div>
                         </div>
@@ -421,42 +405,32 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ashbound Engine: Innovations in Strategy</h2>
                 <p class="text-xl text-center enhanced-text mb-16 max-w-4xl mx-auto">This isn't just another turn-based RPG. We are building a platform for infinite stories, driven by three core innovations designed for maximum player engagement and replayability.</p>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="card card-enchanted-border p-6 rounded-xl flex flex-col">
+                    <div class="card p-6 rounded-xl flex flex-col effect-card">
                         <div class="relative icon-container h-24 w-24 mx-auto mb-4">
-                            <svg class="icon-default h-24 w-24 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd" d="M11.484 2.172a.75.75 0 011.032 0l8.25 7.5a.75.75 0 01-.032 1.06l-8.25 7.5a.75.75 0 01-1.032-.032l-3.3-3.001a12.69 12.69 0 00-3.376-2.552.75.75 0 010-1.298 12.69 12.69 0 003.376-2.552l3.3-3.001z" clip-rule="evenodd" opacity="0.5"/>
-                                <path d="M4.125 7.508a.75.75 0 01.75-.658h14.25a.75.75 0 01.75.658m-15.75 9a.75.75 0 01.75.658h14.25a.75.75 0 01.75-.658"/>
-                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/>
-                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
-                            </svg>
-                            <svg class="icon-hover h-24 w-24 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/>
-                                <path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd" stroke="#f1c40f" stroke-width="1.5"/>
-                                <path d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="#f1c40f"/>
-                                <path d="M9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" fill="#f1c40f"/>
-                                <path d="M15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#f1c40f"/>
-                                <path d="M4.5 9.75l-1.5 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
+                            <svg class="icon-default h-24 w-24 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M11.484 2.172a.75.75 0 011.032 0l8.25 7.5a.75.75 0 01-.032 1.06l-8.25 7.5a.75.75 0 01-1.032-.032l-3.3-3.001a12.69 12.69 0 00-3.376-2.552.75.75 0 010-1.298 12.69 12.69 0 003.376-2.552l3.3-3.001z" clip-rule="evenodd" opacity="0.5"/><path d="M4.125 7.508a.75.75 0 01.75-.658h14.25a.75.75 0 01.75.658m-15.75 9a.75.75 0 01.75.658h14.25a.75.75 0 01.75-.658"/><path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zM9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd"/><path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/></svg>
+                            <svg class="icon-hover h-24 w-24 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.526 12.944a2.25 2.25 0 012.474 0l.132.066a2.25 2.25 0 002.474 0l.132-.066a2.25 2.25 0 012.474 0l.825.412a2.25 2.25 0 011.085 1.9c0 .995-.68 1.83-1.59 2.088a18.68 18.68 0 01-8.4 0c-.91-.258-1.59-1.093-1.59-2.088a2.25 2.25 0 011.085-1.9l.825-.412z"/><path fill-rule="evenodd" d="M8.25 4.507a.75.75 0 01.75-.658h6a.75.75 0 01.75.658l-.75 1.875a.75.75 0 01-.728.565h-3.544a.75.75 0 01-.728-.565L8.25 4.507z" clip-rule="evenodd" stroke="#f1c40f" stroke-width="1.5"/><path d="M12 7.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="#f1c40f"/><path d="M9.75 9a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" fill="#f1c40f"/><path d="M15 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" fill="#f1c40f"/><path d="M4.5 9.75l-1.5 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
                         </div>
                         <h3 class="text-2xl font-bold text-[var(--accent-red)] mb-2">The Blood Debt</h3>
                         <p class="text-[var(--text-muted)] flex-grow font-light">In our world, no wound is forgotten. When a player fails to kill a powerful enemy, the spilled blood of the foe creates a Blood Debt. This debt twists the survivor, scarring their body and mind. They return not just as a veteran of a past battle, but as a zealous creditor hunting the player with new, terrifying abilities learned from the encounter. This system generates intensely personal vendettas and unscripted rivalries that form the heart of the player's story.</p>
+                        <div class="card-effect-container"></div>
                     </div>
-                    <div class="card card-enchanted-border p-6 rounded-xl flex flex-col">
+                    <div class="card p-6 rounded-xl flex flex-col effect-card">
                         <div class="relative icon-container h-24 w-24 mx-auto mb-4">
                             <svg class="icon-default h-24 w-24 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <svg class="icon-hover h-24 w-24 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.693L7.975 7.975M12 12.75h.008v.008H12v-.008z" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold text-[var(--accent-blue)] mb-2">The Echoes System</h3>
                         <p class="text-[var(--text-muted)] flex-grow font-light">Your choices ripple through time. Finishing a playthrough creates "World Echoes" that alter subsequent games, turning a single story into a perpetually evolving world you'll explore for years.</p>
+                        <div class="card-effect-container"></div>
                     </div>
-                    <div class="card card-enchanted-border p-6 rounded-xl flex flex-col">
+                    <div class="card p-6 rounded-xl flex flex-col effect-card">
                         <div class="relative icon-container h-24 w-24 mx-auto mb-4">
                             <svg class="icon-default h-24 w-24 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
                             <svg class="icon-hover h-24 w-24 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1M3 7.5l3 1.5m-3 3l3-1.5m12 1.5l-3-1.5M6 9.75L9 12m6-2.25L9 12" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold text-green-400 mb-2">The Living Sanctum</h3>
                         <p class="text-[var(--text-muted)] flex-grow font-light">Your home base is a dynamic sanctuary that visually evolves. The artisans you rescue and allies you make unlock unique questlines, turning your base into a core progression loop of its own.</p>
+                        <div class="card-effect-container"></div>
                     </div>
                 </div>
             </div>
@@ -466,7 +440,6 @@
             <div class="container mx-auto px-6 max-w-7xl">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center text-white">The Ask: Scalable Funding for Accelerated Growth</h2>
                 <p class="text-xl text-center text-[var(--text-muted)] mb-12 max-w-4xl mx-auto">We have a complete demo and a clear roadmap. We are seeking funding to complete our Steam Next Fest demo, scale marketing, and accelerate development towards full production.</p>
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="card p-6 rounded-xl flex flex-col text-center border-2 border-[var(--accent-gold)]/30">
                         <h4 class="text-sm uppercase text-[var(--text-muted)]">Tier A - Micro-Seed</h4>
@@ -505,43 +478,22 @@
                             <h3 class="text-3xl font-bold text-white mb-2">Runway & Velocity</h3>
                             <p class="text-[var(--text-muted)] font-light">Each funding tier provides critical runway and directly reduces our time-to-market, allowing us to capitalize on the current opportunity faster.</p>
                         </div>
-                        
                         <div class="md:col-span-2 space-y-6 runway-container">
                             <div class="runway-tier">
-                                <div class="flex justify-between items-baseline mb-2">
-                                    <span class="font-bold text-lg text-[var(--accent-gold)]">Tier A</span>
-                                    <span class="font-bold text-lg text-white">~40 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-4 p-1">
-                                    <div class="animate-bar bg-[var(--accent-gold)] h-full rounded-full" data-width="5" style="width: 0%;"></div>
-                                </div>
+                                <div class="flex justify-between items-baseline mb-2"><span class="font-bold text-lg text-[var(--accent-gold)]">Tier A</span><span class="font-bold text-lg text-white">~40 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span></div>
+                                <div class="w-full bg-gray-700 rounded-full h-4 p-1"><div class="animate-bar bg-[var(--accent-gold)] h-full rounded-full" data-width="5" style="width: 0%;"></div></div>
                             </div>
                             <div class="runway-tier">
-                                <div class="flex justify-between items-baseline mb-2">
-                                    <span class="font-bold text-lg text-[var(--accent-orange)]">Tier B</span>
-                                    <span class="font-bold text-lg text-white">~28 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-4 p-1">
-                                    <div class="animate-bar bg-[var(--accent-orange)] h-full rounded-full" data-width="25" style="width: 0%;"></div>
-                                </div>
+                                <div class="flex justify-between items-baseline mb-2"><span class="font-bold text-lg text-[var(--accent-orange)]">Tier B</span><span class="font-bold text-lg text-white">~28 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span></div>
+                                <div class="w-full bg-gray-700 rounded-full h-4 p-1"><div class="animate-bar bg-[var(--accent-orange)] h-full rounded-full" data-width="25" style="width: 0%;"></div></div>
                             </div>
                             <div class="runway-tier">
-                                <div class="flex justify-between items-baseline mb-2">
-                                    <span class="font-bold text-lg text-[var(--accent-blue)]">Tier C</span>
-                                    <span class="font-bold text-lg text-white">~20 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-4 p-1">
-                                    <div class="animate-bar bg-[var(--accent-blue)] h-full rounded-full" data-width="40" style="width: 0%;"></div>
-                                </div>
+                                <div class="flex justify-between items-baseline mb-2"><span class="font-bold text-lg text-[var(--accent-blue)]">Tier C</span><span class="font-bold text-lg text-white">~20 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span></div>
+                                <div class="w-full bg-gray-700 rounded-full h-4 p-1"><div class="animate-bar bg-[var(--accent-blue)] h-full rounded-full" data-width="40" style="width: 0%;"></div></div>
                             </div>
                             <div class="runway-tier">
-                                <div class="flex justify-between items-baseline mb-2">
-                                    <span class="font-bold text-lg text-[var(--accent-purple)]">Tier D</span>
-                                    <span class="font-bold text-lg text-white">~16 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-4 p-1">
-                                    <div class="animate-bar bg-[var(--accent-purple)] h-full rounded-full" data-width="100" style="width: 0%;"></div>
-                                </div>
+                                <div class="flex justify-between items-baseline mb-2"><span class="font-bold text-lg text-[var(--accent-purple)]">Tier D</span><span class="font-bold text-lg text-white">~16 <span class="text-sm text-[var(--text-muted)] font-normal">Months</span></span></div>
+                                <div class="w-full bg-gray-700 rounded-full h-4 p-1"><div class="animate-bar bg-[var(--accent-purple)] h-full rounded-full" data-width="100" style="width: 0%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -599,7 +551,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Embers Effect ---
+            // --- Main Embers Effect ---
             const container = document.getElementById('ember-container');
             if (container) {
                 const emberCount = 25;
@@ -616,7 +568,7 @@
                 }
             }
 
-            // --- Flame Animation (now applied to image via CSS filter) ---
+            // --- Flame Animation ---
             const turbulence = document.querySelector('#flame-turbulence');
             if(turbulence) {
                 let frame = 0;
@@ -626,8 +578,57 @@
                 }
                 animateTurbulence();
             }
+            
+            // --- ENHANCED: Card Hover Smoke & Ember Effect ---
+            const effectCards = document.querySelectorAll('.effect-card');
+            effectCards.forEach(card => {
+                const effectContainer = card.querySelector('.card-effect-container');
+                let effectInterval;
 
-            // --- Intersection Observer for Animations ---
+                card.addEventListener('mouseenter', () => {
+                    // Start generating particles more frequently
+                    effectInterval = setInterval(() => {
+                        createParticle(effectContainer);
+                    }, 100); 
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    clearInterval(effectInterval);
+                });
+            });
+
+            function createParticle(container) {
+                // Increase the chance of creating an ember
+                const isSmoke = Math.random() > 0.7; // 70% chance of ember, 30% smoke
+                const particle = document.createElement('div');
+                
+                if (isSmoke) {
+                    particle.className = 'card-smoke';
+                    const size = Math.random() * 60 + 40;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.animationDuration = `${Math.random() * 3 + 4}s`;
+                } else {
+                    particle.className = 'card-ember';
+                    const size = Math.random() * 5 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.animationDuration = `${Math.random() * 2 + 2.5}s`; // Shorter duration for quicker fade
+                }
+                
+                particle.style.left = `${Math.random() * 80 + 10}%`;
+                particle.style.animationDelay = `${Math.random() * 0.2}s`;
+                
+                container.appendChild(particle);
+
+                // Remove particle from DOM after animation finishes
+                setTimeout(() => {
+                    particle.remove();
+                }, parseFloat(particle.style.animationDuration) * 1000 + 500);
+            }
+
+
+            // --- Intersection Observer for Fade-in Animations ---
             const sections = document.querySelectorAll('.fade-in-section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -666,12 +667,7 @@
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                     let currentValue = progress * (end - start);
-                    // Check if it's a float or int
-                    if (end % 1 !== 0) {
-                        obj.innerHTML = currentValue.toFixed(2);
-                    } else {
-                        obj.innerHTML = Math.floor(currentValue);
-                    }
+                    obj.innerHTML = (end % 1 !== 0) ? currentValue.toFixed(2) : Math.floor(currentValue);
                     if (progress < 1) {
                         window.requestAnimationFrame(step);
                     }
@@ -698,8 +694,8 @@
             document.querySelectorAll('main section, header').forEach(section => {
                 navObserver.observe(section);
             });
-
         });
     </script>
 </body>
 </html>
+
